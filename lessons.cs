@@ -21,7 +21,6 @@ namespace Level1Space
             for (int i =0;i< s.Length ;i++)
             { if (char.IsWhiteSpace(s, i))
                     whiteSpaseCounter++;
-                
             }
             char[] charsWithoutWS = new char[s.Length - whiteSpaseCounter];
             string resultus ="s";
@@ -36,22 +35,18 @@ namespace Level1Space
                         j++;
                     }
                 }
-               string  withoutWhiteSpase = new String(charsWithoutWS);
+                string  withoutWhiteSpase = new String(charsWithoutWS);
                 if (encode == true)
-            {
+                {
                 int len = (int)Math.Truncate(Math.Sqrt(withoutWhiteSpase.Length));
                 int width = len + 1;
-
                 int hight;
                 if (withoutWhiteSpase.Length >len*width)
                 {
                     hight = len + 1;
                 }
-                else hight = len;
-                
-
-                char[,] matrix = new char[hight, width];
-                
+                else hight = len;  
+                char[,] matrix = new char[hight, width];  
                 int k = 0;
                 for (int l = 0; l < hight; l++)
                 {
@@ -65,9 +60,9 @@ namespace Level1Space
                     }
                 }
                 char[] charSumm = new char[s.Length +width-1-whiteSpaseCounter];
-                for (int l = 0; l < hight; l++)
+                for (int l = 0; l < width; l++)
                 {
-                    for (k = 0; k < width; k++)
+                    for (k = 0; k < hight; k++)
                     {
                         if (matrix[k, l] != '\0')
                         {
@@ -76,7 +71,7 @@ namespace Level1Space
                             count++;
                         }
                     }
-                    if (l < hight - 1)
+                    if (l < width - 1)
                     {
                         count++;
                     }
@@ -87,14 +82,14 @@ namespace Level1Space
             {
                 char[,] matrixDecoder = new char[lengthHight,whiteSpaseCounter+1];
                 int num = 0;
-                for (int i = 0; i < lengthHight;i++)
-                {
-                    for (int m = 0; m <whiteSpaseCounter+1 ; m ++)
+                for (int i = 0; i < whiteSpaseCounter+1;i++)
+                {   
+                    for (int m = 0; m <lengthHight ; m ++)
                     {
-                        if (num>0 && char.IsWhiteSpace(s, num-1))
-                        {
-                            m = 0;
-                        }
+                        if (s.Length>num && num > 0 && char.IsWhiteSpace(s, num - 1))
+                            {
+                                m = 0;
+                            }
                             if (num < s.Length && char.IsWhiteSpace(s, num))
                             {
                                 num++;
@@ -103,10 +98,10 @@ namespace Level1Space
                             {
                             if (num < s.Length)
                                 matrixDecoder[m, i] = s[num];
-                                num++;
-                            }  
+                                num++;        
+                            } 
                     }
-                }
+                } 
                 for (int i = 0; i < lengthHight; i++)
                 {
                     for (int m = 0; m < whiteSpaseCounter + 1; m++)
