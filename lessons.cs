@@ -73,6 +73,7 @@ namespace Level1Space
                     }
                     if (l < width - 1)
                     {
+                        charSumm[count] = ' ';
                         count++;
                     }
                 }
