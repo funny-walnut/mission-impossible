@@ -3,7 +3,9 @@ using System.Collections.Generic;
 
 namespace Level1Space
 {
-  public static int PrintingCosts(string Line)
+  public static class Level1
+  {
+      public static int PrintingCosts(string Line)
         {
             int counter = 0;
             char[] charBase = 
@@ -54,7 +56,8 @@ namespace Level1Space
                         if (intBase[a] == 0)
                             nullSum = 1;
                         break;
-                    }   
+                    }
+                    
                 }
                 if (summ == 0 && nullSum  != 1)
                     {
