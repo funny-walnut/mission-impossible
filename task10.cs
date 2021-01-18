@@ -37,24 +37,29 @@ namespace Level1Space
               
                 for (int count = massInt1.Length - 1; count >= 0; count--)
                 {
-                    if (count2<0)
+                    
+                    if (count>=0 &&count2>=0 && massInt1[count] - massInt2[count2] >= 0) //проверяем что разность первого и второго числа больше или равно 0
                     {
-                        massAnswer[count3] = massInt1[count];
-                        count3--;
-                        continue;
-                    }
-                    if (count>=0 && count2>=0 && massInt1[count] - massInt2[count2] >= 0) //проверяем что разность первого и второго числа больше или равно 0
-                    {
-                     //   Console.WriteLine($"massint1<{massInt1[count]}>");
-                     //   Console.WriteLine($"massint2<{massInt2[count2]}>");
+                       // Console.WriteLine($"massint1<{massInt1[count]}>");
+                        //Console.WriteLine($"massint2<{massInt2[count2]}>");
                         massAnswer[count3] = massInt1[count] - massInt2[count2];
                   
                         count2--;
-                    //    Console.WriteLine($"count3=<{count3}>");
-                     //   Console.WriteLine($"next1<{massAnswer[count3]}>");
+                    // Console.WriteLine($"count3=<{count3}>");
+                      // Console.WriteLine($"next1<{massAnswer[count3]}>");
                         count3--;
                     }
-                    else
+                    else if (count2<0)
+                    {
+                        while (count>=0)
+                        {
+                            massAnswer[count3] = massInt1[count];
+                            count3--;
+                            count--;
+                                }
+                        break;
+                    }
+                    else if (count2>=0 && massInt1[count] - massInt2[count2] < 0)
                     {
                         if (count - 1 >= 0) //проверяем что есть следующее число
                         {
@@ -65,18 +70,24 @@ namespace Level1Space
                                     if (count - 2 >= 0) //проверяем, что следующее за нулем существует
                                     {
                                         massInt1[count - 1] = 9;
-                                        if ( count2 >= 0)
-                                        {
+                                        
                                            
-                                            if (massInt1[count] - massInt2[count2] >= 0) //проверяем что разность первого и второго числа больше или равно 0
+                                            if (count2>=0 && massInt1[count] - massInt2[count2] >= 0) //проверяем что разность первого и второго числа больше или равно 0
                                             {
                                                 massAnswer[count3] = massInt1[count] - massInt2[count2];
-                                             //   Console.WriteLine($"count3=<{count3}>");
+                                            //  Console.WriteLine($"count3=<{count3}>");
                                              //   Console.WriteLine($"next2<{massAnswer[count3]}>");
                                                 
                                             }
+                                            else if (count2<0)
+                                            {
+                                                massAnswer[count3] = massInt1[count];
+                                              //  Console.WriteLine($"count3=<{count3}>");
+                                               // Console.WriteLine($"next5<{massAnswer[count3]}>");
+                                            }
                                             else
                                             {
+                                                
                                                 massAnswer[count3] = massInt1[count] + 10 - massInt2[count2];
                                               //  Console.WriteLine($"count3=<{count3}>");
                                                // Console.WriteLine($"next3<{massAnswer[count3]}>");
@@ -84,11 +95,13 @@ namespace Level1Space
                                             }
                                             count3--;
                                             count2--;
-                                        }
+                                           
+                                        
+
                                     }
                                     else //если за нулем нет больше числа
                                     {
-                                        //3первое число меньше второго
+                                      //  Console.WriteLine("3первое число меньше второго");
                                         for (int i = 0; i < massAnswer.Length; i++)
                                         {
                                             massAnswer[i] = 0;
@@ -113,7 +126,7 @@ namespace Level1Space
                         }
                         else
                         {
-                            //"2первое число меньше второго"
+                          //  Console.WriteLine("2первое число меньше второго");
                           for (int i = 0; i<massAnswer.Length;i++)
                             {
                                 massAnswer[i] = 0;
@@ -126,7 +139,7 @@ namespace Level1Space
             }
 
             int[] ans = MassiveAnsver(s1,s2);
-            string answer=""; 
+            string answer = null; 
             int counter = 0;
             if (ans[counter] == 0)
             {
@@ -139,7 +152,7 @@ namespace Level1Space
             {
                 answer += ans[i].ToString();
             }
-            //Console.WriteLine(answer);
+          //  Console.WriteLine(answer);
             return answer;
         }
   }
