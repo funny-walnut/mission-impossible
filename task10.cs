@@ -3,7 +3,9 @@ using System.Collections.Generic;
 
 namespace Level1Space
 {
-  public static string BigMinus(string s1, string s2)
+  public static class Level1
+  {
+      public static string BigMinus(string s1, string s2)
         {
            int[] MassiveAnsver (string se1, string se2)
             {
@@ -139,7 +141,7 @@ namespace Level1Space
             }
 
             int[] ans = MassiveAnsver(s1,s2);
-            string answer = null; 
+            
             int counter = 0;
             if (ans[counter] == 0)
             {
@@ -148,11 +150,13 @@ namespace Level1Space
                     counter++;
                 }
             }
-                for (int i = counter;i < ans.Length;i++ )
+            string answer = ans[counter].ToString();
+                for (int i = counter+1;i < ans.Length;i++ )
             {
                 answer += ans[i].ToString();
             }
-          //  Console.WriteLine(answer);
+
+            //Console.WriteLine(answer.Length);
             return answer;
         }
   }
