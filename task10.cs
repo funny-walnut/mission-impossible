@@ -147,6 +147,8 @@ namespace Level1Space
             {
                 while (ans[counter] == 0)
                 {
+                    if (counter == ans.Length - 1)
+                        return "0";
                     counter++;
                 }
             }
